@@ -1,0 +1,35 @@
+----- Create SQL server -----
+
+az sql server create --name stanmyazuresqlserver --resource-group stan --location uksouth --admin-user myadmin --admin-password MyP@ssword123
+
+----- Create SQL BDD -----
+
+az sql db create --resource-group stan --server stanmyazuresqlserver --name myazuresqlserver --service-objective S0
+
+----- Pare feu -----
+
+az sql server firewall-rule create --resource-group stan --server stanmyazuresqlserver --name AllowYourIP --start-ip-address <YourIPAddress> --end-ip-address <YourIPAddress>
+
+----- Import data in BDD from .bacpac -----
+
+az sql db import --resource-group stan --server stanmyazuresqlserver --name myazuresqlserver --admin-user myadmin --admin-password MyP@ssword123 --storage-uri https://<storage-account-name>.blob.core.windows.net/<container-name>/<filename>.bacpac --storage-key <storage-account-key> --storage-key-type StorageAccessKey
+
+----- Import data in BDD from .bacpac -----
+
+az sql db create --resource-group stan --server myazuresqlserver --name mydatabase-secondary --resource-group stan --partner-server <secondary-server-name> --collation SQL_Latin1_General_CP1_CI_AS
+
+----- Réplica géographique -----
+
+--- Créer un server sql dans une autre region ---
+
+az sql server create --name stanmyazuresqlserver2 --resource-group stan --location northeurope --admin-user myadmin --admin-password MyP@ssword123
+
+--- Créer le réplica ---
+
+az sql db replica create `
+  --resource-group stan `
+  --server stanmyazuresqlserver `
+  --name myazuresqlserver `
+  --partner-server stanmyazuresqlserver2 `
+  --partner-resource-group stan `
+  --location northeurope
