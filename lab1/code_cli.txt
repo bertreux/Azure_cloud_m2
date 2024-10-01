@@ -15,7 +15,7 @@ az vm image list --output table
 az vm create `
   --resource-group stan `
   --name linux `
-  --image Canonical:0001-com-ubuntu-server-jammy:24_04-lts-gen2:latest `
+  --image Canonical:ubuntu-24_04-lts:server-gen1:latest `
   --size Standard_B1s `
   --os-disk-size-gb 30 `
   --admin-username dev `

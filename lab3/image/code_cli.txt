@@ -1,1 +1,0 @@
-az webapp deployment source config-zip --resource-group stan --name MyAppService --src .\lab3\app.zip

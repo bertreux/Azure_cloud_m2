@@ -1,0 +1,24 @@
+{
+    "rules": [
+      {
+        "enabled": true,
+        "name": "moveToCool",
+        "type": "Lifecycle",
+        "definition": {
+          "actions": {
+            "baseBlob": {
+              "tierToCool": {
+                "daysAfterModificationGreaterThan": 30
+              }
+            }
+          },
+          "filters": {
+            "blobTypes": [
+              "blockBlob"
+            ]
+          }
+        }
+      }
+    ]
+  }
+  

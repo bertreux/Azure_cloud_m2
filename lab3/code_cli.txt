@@ -1,0 +1,20 @@
+----- Create app plan -----
+
+az appservice plan create --name MyAppService --resource-group stan --location uksouth --sku B1
+
+----- Create app web service -----
+
+az webapp create --resource-group stan --plan MyAppService --name monappli --runtime "PHP|8.3"
+
+----- Deploy with local zip -----
+
+az webapp deployment source config-zip --resource-group stan --name MyAppService --src .\lab3\app.zip
+
+----- Domaine personnel -----
+
+az webapp config hostname add --resource-group tan --webapp-name monappli --hostname monapp.com
+
+----- Config SSL -----
+
+# Voire plus en detail plus tard
+#az webapp config ssl bind --certificate-thumbprint YOUR_CERTIFICATE_THUMBPRINT --ssl-type SNI --resource-group stan --name monappli

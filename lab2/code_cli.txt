@@ -48,7 +48,7 @@ az network nsg rule create `
 az vm create `
   --resource-group stan `
   --name MyVM1 `
-  --image Canonical:0001-com-ubuntu-server-focal:24_04-lts-gen2:latest `
+  --image Canonical:ubuntu-24_04-lts:server-gen1:latest `
   --vnet-name MyVNet1 `
   --subnet Subnet1 `
   --size Standard_B1s `

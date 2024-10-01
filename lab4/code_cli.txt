@@ -1,0 +1,44 @@
+----- Create Storage account -----
+
+az storage account create --name stanislasstorageaccount --resource-group stan --location uksouth --sku Standard_GRS --kind StorageV2
+
+----- Create container -----
+
+az storage container create --name mycontainer --account-name stanislasstorageaccount --resource-group stan
+
+----- Load BLOB -----
+
+az storage blob upload --container-name mycontainer --name index.php --file .\lab3\index.php --account-name stanislasstorageaccount
+
+----- List BLOB in container -----
+
+az storage blob list --container-name mycontainer --account-name stanislasstorageaccount --output table
+
+
+---- Generate SAS Container -----
+
+az storage container generate-sas --account-name stanislasstorageaccount --name mycontainer --permissions rwl --expiry 2024-12-31T23:59:59Z --output tsv
+
+----- Generate SAS BLOB -----
+
+az storage blob generate-sas --account-name stanislasstorageaccount --container-name mycontainer --name index.php --permissions r --expiry 2024-12-31T23:59:59Z --output tsv
+
+----- Generate Lifecycle -----  (pas encore réussi a faire marcher le json)
+
+az storage account management-policy create --account-name stanislasstorageaccount --resource-group stan --policy @{
+    Rules=@{
+        Enabled=$true;
+        Name="delete";
+        Definition=@{
+            Actions=@{
+                BaseBlob=@{
+                    Delete=@{DaysAfterModificationGreaterThan=30};
+                };
+            };
+            Filters=@{
+                BlobTypes=@("blockBlob");
+            }
+        }
+    }
+}
+
