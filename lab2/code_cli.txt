@@ -1,0 +1,58 @@
+----- create vnet et subnet -----
+
+az network vnet create `
+  --resource-group stan `
+  --name MyVNet2 `
+  --address-prefix 10.1.0.0/16 `
+  --subnet-name Subnet1 `
+  --subnet-prefix 10.1.1.0/24
+
+----- create subnet -----
+
+az network vnet subnet create `
+  --resource-group stan `
+  --vnet-name MyVNet2 `
+  --name Subnet2 `
+  --address-prefix 10.1.2.0/24
+
+----- create nsg -----
+
+az network nsg create `
+  --resource-group stan `
+  --name MyNSG2
+
+----- create nsg rule -----
+
+az network nsg rule create `
+  --resource-group stan `
+  --nsg-name MyNSG2 `
+  --name AllowSSH `
+  --priority 1000 `
+  --direction Inbound `
+  --access Allow `
+  --protocol Tcp `
+  --destination-port-ranges 22
+
+az network nsg rule create `
+  --resource-group stan `
+  --nsg-name MyNSG2 `
+  --name AllowRDP `
+  --priority 1100 `
+  --direction Inbound `
+  --access Allow `
+  --protocol Tcp `
+  --destination-port-ranges 3389
+
+----- create vm into subnet -----
+
+az vm create `
+  --resource-group stan `
+  --name MyVM1 `
+  --image Canonical:0001-com-ubuntu-server-focal:24_04-lts-gen2:latest `
+  --vnet-name MyVNet1 `
+  --subnet Subnet1 `
+  --size Standard_B1s `
+  --os-disk-size-gb 30 `
+  --admin-username dev `
+  --admin-password testMDP1234! `
+  --authentication-type password

@@ -1,0 +1,23 @@
+----- connect account azure -----
+
+az login
+
+----- create ressource group -----
+
+az group create --name stan --location uksouth
+
+----- list image -----
+
+az vm image list --output table
+
+----- create vm -----
+
+az vm create `
+  --resource-group stan `
+  --name linux `
+  --image Canonical:0001-com-ubuntu-server-jammy:24_04-lts-gen2:latest `
+  --size Standard_B1s `
+  --os-disk-size-gb 30 `
+  --admin-username dev `
+  --admin-password testMDP1234! `
+  --authentication-type password
