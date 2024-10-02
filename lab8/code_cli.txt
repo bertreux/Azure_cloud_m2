@@ -1,0 +1,21 @@
+----- CREATE AI TEXT -----
+
+az cognitiveservices account create \
+  --name myTextAnalytics \
+  --resource-group stan \
+  --kind TextAnalytics \
+  --sku S0 \
+  --location westeurope \
+  --yes
+
+----- GET KEY -----
+
+az cognitiveservices account keys list --name myTextAnalytics --resource-group stan
+
+----- GAT USAGE -----
+
+az monitor metrics list --resource myTextAnalytics --resource-group stan --metric-names "TotalRequests"
+
+----- REGENERATE KEY -----
+
+az cognitiveservices account keys regenerate --name myTextAnalytics --resource-group stan --key-name key1
