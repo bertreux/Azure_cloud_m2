@@ -1,8 +1,0 @@
-az functionapp create \
-  --resource-group stan \
-  --consumption-plan-location canadacentral \
-  --name MyFunctionApp \
-  --storage-account mystorageaccount \
-  --runtime python \
-  --runtime-version 3.8 \
-  --functions-version 3
