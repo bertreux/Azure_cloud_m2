@@ -1,0 +1,11 @@
+------ ADD ROLE TO USER -----
+
+az role assignment create --assignee <email-utilisateur-ou-objetID> --role "<NomDuRôle>" --scope /subscriptions/<IDAbonnement>/resourceGroups/<NomDuGroupeDeRessources>
+
+----- TEST ACCESS -----
+
+az role assignment list --assignee <email-utilisateur-ou-objetID> --scope /subscriptions/<IDAbonnement>/resourceGroups/<NomDuGroupeDeRessources>
+
+----- AUDIT -----
+
+az monitor activity-log list --resource-group <NomDuGroupeDeRessources> --start-time <DateDebut> --end-time <DateFin>
