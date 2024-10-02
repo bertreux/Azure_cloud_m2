@@ -1,0 +1,49 @@
+----- CREATE LOAD BALANCER -----
+
+az network lb create \
+  --resource-group myResourceGroup \
+  --name myLoadBalancer \
+  --sku Basic \
+  --frontend-ip-name myFrontend \
+  --backend-pool-name myBackendPoo
+  
+----- CREATE SONDE -----
+
+az network lb probe create \
+  --resource-group myResourceGroup \
+  --lb-name myLoadBalancer \
+  --name myHealthProbe \
+  --protocol tcp \
+  --port 80
+
+----- CREATE RULE -----
+
+az network lb rule create \
+  --resource-group myResourceGroup \
+  --lb-name myLoadBalancer \
+  --name myLoadBalancingRule \
+  --protocol tcp \
+  --frontend-port 80 \
+  --backend-port 80 \
+  --frontend-ip-name myFrontend \
+  --backend-pool-name myBackendPool \
+  --probe-name myHealthProbe
+
+----- CREATE TRAFFIC MANAGER -----
+
+az network traffic-manager profile create \
+  --resource-group myResourceGroup \
+  --name myTrafficManagerProfile \
+  --routing-method Performance \
+  --unique-dns-name myTrafficManagerDNS \
+  --ttl 30
+
+----- CREATE ENDPOINT -----
+
+az network traffic-manager endpoint create \
+  --resource-group myResourceGroup \
+  --profile-name myTrafficManagerProfile \
+  --type azureEndpoints \
+  --name myEndpoint \
+  --target-resource-id "/subscriptions/<your-subscription-id>/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/myLoadBalancer" \
+  --endpoint-status enabled
