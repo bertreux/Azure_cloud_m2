@@ -1,0 +1,21 @@
+----- CREATE RECOVERY VAULT -----
+
+az backup vault create --name MonCoffreBackup --resource-group MonGroupeRessources --location francecentral
+
+----- CREATE RECOVERY VM -----
+
+az backup protection enable-for-vm --resource-group MonGroupeRessources --vault-name MonCoffreBackup --vm MyVM
+
+----- CREATE RECOVERY AZURE FILE -----
+
+az backup protection enable-for-azurefileshare --resource-group MonGroupeRessources --vault-name MonCoffreBackup --storage-account MonCompteStockage --azure-file-share MonPartageFichiers
+
+----- START RECOVERY -----
+
+az backup job start --resource-group MonGroupeRessources --vault-name MonCoffreBackup --container-name IVMContainer --item-name MyVM
+
+az backup restore restore-disks --resource-group MonGroupeRessources --vault-name MonCoffreBackup --container-name IVMContainer --item-name MyVM --target-resource-group MonGroupeRessources --storage-account MonCompteStockage
+
+----- CREATE STRATEGIE -----
+
+az backup policy create --resource-group MonGroupeRessources --vault-name MonCoffreBackup --name MaPolitique --backup-management-type AzureIaasVM --schedule-policy '{...}' --retention-policy '{...}'
