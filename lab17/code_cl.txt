@@ -1,0 +1,26 @@
+----- CREATE POLICY -----
+
+az policy definition create --name "DenyPublicIP" --rules policy.json --mode All
+
+----- ASSIGN POLICY TO GROUP ------
+
+az policy assignment create --policy "DenyPublicIP" --name "DenyPublicIPAssignment" --scope "/subscriptions/{subscription-id}/resourceGroups/{resource-group}"
+
+----- CREATE INITIATIVE -----
+
+az policy set-definition create --name "SecurityBestPractices" --definitions ini.json
+
+----- ASSIGN INITIATIVE TO GROUP ------
+
+az policy assignment create --name "SecurityBestPracticesAssignment" --policy-set-definition "SecurityBestPractices" --scope "/subscriptions/{subscription-id}/resourceGroups/{resource-group}"
+
+----- VERIFY CONFORMITY -----
+
+az policy state summarize --resource "/subscriptions/{subscription-id}/resourceGroups/{resource-group}"
+
+----- RESUME COMFORMITY -----
+
+az policy state summarize --management-group "MyManagementGroup"
+
+az policy state list --policy-assignment "DenyPublicIPAssignment"
+

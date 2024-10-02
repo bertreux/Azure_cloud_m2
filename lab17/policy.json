@@ -1,0 +1,16 @@
+{
+    "properties": {
+      "displayName": "Deny Public IP",
+      "description": "This policy denies the creation of VMs with public IPs.",
+      "policyRule": {
+        "if": {
+          "field": "Microsoft.Network/publicIPAddresses",
+          "equals": "true"
+        },
+        "then": {
+          "effect": "deny"
+        }
+      }
+    }
+  }
+  
