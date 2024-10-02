@@ -1,0 +1,19 @@
+----- CREATE KEY VAULT -----
+
+az keyvault create --name <NomDuKeyVault> --resource-group <NomDuGroupeDeRessources> --location <Localisation>
+
+----- GENERATE SECRET -----
+
+az keyvault secret set --vault-name <NomDuKeyVault> --name <NomDuSecret> --value <ValeurDuSecret>
+
+----- GET SECRET -----
+
+az keyvault secret set --vault-name <NomDuKeyVault> --name <NomDuSecret> --value <ValeurDuSecret>
+
+----- GENERATE KEY -----
+
+az keyvault key create --vault-name <NomDuKeyVault> --name <NomDeLaClé> --protection software
+
+----- GET KEY -----
+
+az keyvault key show --vault-name <NomDuKeyVault> --name <NomDeLaClé>
