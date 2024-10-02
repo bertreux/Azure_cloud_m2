@@ -1,0 +1,15 @@
+----- CREATE ZONE DNS -----
+
+az network dns zone create --resource-group <NomDuGroupeDeRessources> --name <NomDeLaZoneDNS>
+
+----- CREATE ENREGISTREMENT DNS -----
+
+az network dns record-set a add-record --resource-group <NomDuGroupeDeRessources> --zone-name <NomDeLaZoneDNS> --record-set-name <NomDuSousDomaine> --ipv4-address <AdresseIP>
+
+----- ADD TXT RECORD -----
+
+az network dns record-set txt add-record --resource-group <NomDuGroupeDeRessources> --zone-name <NomDeLaZoneDNS> --record-set-name <NomDuSousDomaine> --value "<ValeurDuCodeDeVerification>"
+
+----- ADD CNAME -----
+
+az network dns record-set cname set-record --resource-group <NomDuGroupeDeRessources> --zone-name <NomDeLaZoneDNS> --record-set-name www --cname monapp.azurewebsites.net
