@@ -1,0 +1,13 @@
+------ CREATE ALERT -----
+
+az monitor diagnostic-settings create --resource <resource_id> --resource-group <resource_group_name> --workspace <workspace_id> --logs '[{"category": "GuestOperatingSystem","enabled": true}]' --metrics '[{"category": "AllMetrics","enabled": true}]'
+
+az monitor metrics alert create --resource-group <resource_group_name> --name <alert_rule_name> --scopes <resource_id> --condition "avg Percentage CPU > 80" --action <action_group_id> --description "Alerte CPU élevée"
+
+----- CREATE BOARD -----
+
+az monitor dashboard create --resource-group <resource_group_name> --name <dashboard_name> --location <location> --source <dashboard_template.json>
+
+----- CREATE GROUP -----
+
+az monitor action-group create --resource-group <resource_group_name> --name <action_group_name> --short-name <short_name> --email <email_address> --sms <sms_number>
