@@ -1,9 +1,6 @@
 ----- RUN DEPLOY -----
 
-az deployment group create `
-  --resource-group stan `
-  --template-file template.json `
-  --parameters appName=YourAppName
+az deployment group create --resource-group stan --template-file template.json
 
 ----- RUN DEPLOY WITH PARAMETER -----
 
