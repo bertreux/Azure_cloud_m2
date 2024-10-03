@@ -1,0 +1,55 @@
+----- Create host pool -----
+
+az desktopvirtualization hostpool create \
+  --resource-group AVDResourceGroup \
+  --location eastus \
+  --name MyHostPool \
+  --friendly-name "My Host Pool" \
+  --validate \
+  --load-balancer-type BreadthFirst \
+  --max-session-limit 10 \
+  --personal-desktop-assignment-type Automatic
+
+----- CREATE VM -----
+
+az vm create \
+  --resource-group AVDResourceGroup \
+  --name SessionHost1 \
+  --image MicrosoftWindowsDesktop:windows-10:21h2-pro:latest \
+  --admin-username azureuser \
+  --admin-password 'Password123!' \
+  --size Standard_D2s_v3 \
+  --nics MyNic \
+  --host-group MyHostGroup
+
+----- CREATE WORKING SPACE -----
+
+az desktopvirtualization workspace create \
+  --resource-group AVDResourceGroup \
+  --location eastus \
+  --name MyWorkspace \
+  --friendly-name "My AVD Workspace"
+
+----- ASSOCIATE HOST POOL AND WORKING SPACE -----
+
+az desktopvirtualization hostpool association create \
+  --resource-group AVDResourceGroup \
+  --hostpool-name MyHostPool \
+  --workspace-name MyWorkspace
+
+---- PUBLISH APPLICATION REMOTE DESKTOPP -----
+
+az desktopvirtualization application create \
+  --resource-group AVDResourceGroup \
+  --location eastus \
+  --name "RemoteDesktop" \
+  --hostpool-name MyHostPool \
+  --application-friendly-name "Remote Desktop" \
+  --application-path "C:\\Program Files\\Remote Desktop"
+
+----- USER TO HOST POOL -----
+
+az desktopvirtualization user-session create \
+  --resource-group AVDResourceGroup \
+  --hostpool-name MyHostPool \
+  --user-upn user@domain.com

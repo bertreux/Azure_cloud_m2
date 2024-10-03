@@ -1,0 +1,19 @@
+----- CREATE COSMOS DB -----
+
+az cosmosdb create --name $COSMOS_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --kind GlobalDocumentDB --locations regionName=$LOCATION failoverPriority=0 --default-consistency-level Session
+
+----- CREATE DATABASE -----
+
+az cosmosdb sql database create --account-name $COSMOS_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --name $DATABASE_NAME
+
+----- CREATE CONTAINER -----
+
+az cosmosdb sql container create --account-name $COSMOS_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --database-name $DATABASE_NAME --name $CONTAINER_NAME --partition-key-path "/partitionKey" --throughput 400
+
+----- UPDATE DEBIT -----
+
+az cosmosdb sql container update --account-name $COSMOS_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --database-name $DATABASE_NAME --name $CONTAINER_NAME --throughput 800
+
+---- SET REDONDANCE GLOBAL -----
+
+az cosmosdb update --name $COSMOS_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --locations regionName=WestEurope failoverPriority=1

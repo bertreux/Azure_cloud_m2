@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-store-front-to-product-service
+  namespace: default  # Remplacez par votre namespace si nécessaire
+spec:
+  podSelector:
+    matchLabels:
+      app: store-front  # Sélecteur de labels pour le pod cible
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: product-service  # Sélecteur de labels pour les pods autorisés

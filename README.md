@@ -8,15 +8,15 @@ Lab 7  :  yes
 Lab 8  :  yes
 Lab 9  :  yes
 Lab 11 :  yes
-Lab 12 :  no
+Lab 12 :  yes
 Lab 13 :  yes
 Lab 14 :  yes
 Lab 15 :  ne pas faire
-Lab 16 :  no
-Lab 17 :  no
-Lab 18 :  no
-Lab 19 :  no
-Lab 20 :  no
+Lab 16 :  yes
+Lab 17 :  yes
+Lab 18 :  yes
+Lab 19 :  yes
+Lab 20 :  yes
 
 Pour chaque un README.md explicatif, des screen shot et l'equivalent en commande line. 
  

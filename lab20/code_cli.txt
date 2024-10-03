@@ -1,0 +1,39 @@
+----- CONNECT TO CLUSTER -----
+
+az aks get-credentials --resource-group stan --name kubernetisstan
+
+---- LIST ALL NOEUDS -----
+
+kubectl get nodes
+
+----- DEPLOY APP WITH YAML -----
+
+kubectl apply -f aks-store-quickstart.yaml
+
+----- SEE STATUS OF SERVICE -----
+
+kubectl get service store-front --watch
+
+----- LIST ALL DEPLOY -----
+
+kubectl get deployments
+
+----- SCALE DEPLOY -----
+
+kubectl scale deployment store-front --replicas=5
+
+----- LIST ALL PODS -----
+
+kubectl get pods
+
+----- REMOVE ONE POD ----
+
+kubectl delete pod <pod-name>
+
+----- APPLY A NETWORK POLICY -----
+
+kubectl apply -f network-policy.yaml
+
+----- CHECK NETWORK POLICY -----
+
+kubectl get networkpolicies
