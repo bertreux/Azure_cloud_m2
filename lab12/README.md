@@ -1,17 +1,8 @@
-### CREATE VAULT RECOVERY
+### OUTPUT ARM
 
-![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab11/image/create_recovery.png?raw=true)
+![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab12/image/output_arm.png?raw=true)
 
-![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab11/image/create_recovery_vm.png?raw=true)
+### CREATED VM
 
-### SAVE VM
+![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab12/image/test_created.png?raw=true)
 
-![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab11/image/create_recovery_vm.png?raw=true)
-
-### CREATE SAVE VM NOW
-
-![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab11/image/sauvegarder_maintenant.png?raw=true)
-
-### STARTEGIE
-
-![alt text](https://github.com/bertreux/Azure_cloud_m2/blob/main/lab11/image/strategie.png?raw=true)

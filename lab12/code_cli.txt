@@ -1,17 +1,22 @@
+----- RUN DEPLOY -----
+
 az deployment group create `
   --resource-group stan `
   --template-file template.json `
   --parameters appName=YourAppName
 
-
+----- RUN DEPLOY WITH PARAMETER -----
 
 az deployment group create --resource-group stan --template-file template.json --parameters appServiceName=myUniqueAppServiceName sqlServerName=myUniqueSqlServerName sqlDatabaseName=myUniqueDatabaseName
 
+----- SEE STATUS OF A DEPLOIMENT -----
 
 az deployment group show --resource-group stan --name <deployment_name>
 
+----- SEE STATE OF A DEPLOIMENT -----
 
 az deployment group show --resource-group stan --name <deployment_name> --query properties.provisioningState
 
+----- SEE OUTPUT OF A DEPLOIMENT -----
 
 az deployment group show --resource-group stan --name <deployment_name> --query properties.outputs
